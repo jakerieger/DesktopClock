@@ -34,20 +34,20 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include=".clang-format" />
+    <None Include="..\README.md" />
+  </ItemGroup>
+  <ItemGroup>
     <ResourceCompile Include="DesktopClock.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="small.ico">
+    <Image Include="..\..\..\..\Pictures\ClockIcon.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="DesktopClock.ico">
+    <Image Include="..\icon.ico">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".clang-format" />
-    <None Include="..\README.md" />
   </ItemGroup>
 </Project>

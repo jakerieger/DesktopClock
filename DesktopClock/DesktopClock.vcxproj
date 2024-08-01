@@ -140,15 +140,15 @@
     <ClCompile Include="DesktopClock.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\README.md" />
+    <None Include=".clang-format" />
+  </ItemGroup>
+  <ItemGroup>
     <ResourceCompile Include="DesktopClock.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="DesktopClock.ico" />
-    <Image Include="small.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\README.md" />
-    <None Include=".clang-format" />
+    <Image Include="..\..\..\..\Pictures\ClockIcon.png" />
+    <Image Include="..\icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
