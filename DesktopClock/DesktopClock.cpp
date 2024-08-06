@@ -24,7 +24,7 @@ WCHAR szTitle[MAX_LOADSTRING];        // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];  // the main window class name
 
 // Forward declarations of functions included in this code module:
-ATOM MyRegisterClass(HINSTANCE hInstance);
+ATOM RegisterWindowClass(HINSTANCE hInstance);
 BOOL InitInstance(HINSTANCE, int);
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
@@ -240,7 +240,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_DESKTOPCLOCK, szWindowClass, MAX_LOADSTRING);
-    MyRegisterClass(hInstance);
+    RegisterWindowClass(hInstance);
 
     // Perform application initialization:
     if (!InitInstance(hInstance, nCmdShow)) {
@@ -266,7 +266,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     return (int)msg.wParam;
 }
 
-ATOM MyRegisterClass(HINSTANCE hInstance) {
+ATOM RegisterWindowClass(HINSTANCE hInstance) {
     WNDCLASSEXW wcex;
 
     wcex.cbSize = sizeof(WNDCLASSEX);
@@ -289,10 +289,10 @@ ATOM MyRegisterClass(HINSTANCE hInstance) {
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
     hInst = hInstance;  // Store instance handle in our global variable
 
-    HWND hWnd = CreateWindowExW(WS_EX_TOPMOST,
+    HWND hWnd = CreateWindowExW(0,
                                 szWindowClass,
                                 L"Desktop Clock",
-                                WS_POPUP,
+                                WS_POPUP | WS_THICKFRAME,
                                 CW_USEDEFAULT,
                                 CW_USEDEFAULT,
                                 1280,
@@ -330,6 +330,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
             ShutdownD2D();
             PostQuitMessage(0);
             break;
+        case WM_KEYDOWN: {
+            if (wParam == VK_ESCAPE) {
+                ::PostQuitMessage(0);
+            }
+        } break;
         case WM_SIZE: {
             if (g_pD2DRenderTarget) {
                 RECT rc;
